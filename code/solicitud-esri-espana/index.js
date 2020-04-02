@@ -1,5 +1,7 @@
+const settings = require('./settings.json');
+
 if(!process.argv[2]){
-  console.log('Please run: node index.js "Tue, 31 Mar 2020 00:00:00 GMT"')
+  console.log('Please run: node index.js "Tue, 31 Mar 2020 00:00:01 GMT"')
   return -1;
 }else{
     const d = new Date(process.argv[2])
@@ -12,20 +14,18 @@ if(!process.argv[2]){
       const { UserSession } = require('@esri/arcgis-rest-auth');
 
       const session = new UserSession({
-        username: "user",
-        password: "pass"
+        username: settings.username,
+        password: settings.password
       })
-      //
+
       session.getToken('https://www.arcgis.com/sharing/rest/generateToken')
         .then(response => {
-          // console.log(response)
           addFeatures({
             url: "https://services7.arcgis.com/lTrEzFGSU2ayogtj/arcgis/rest/services/Afectados_por_coronavirus_por_provincia_en_Espania/FeatureServer/0",
             authentication: session,
             features: provincias(process.argv[2])
           })
-            .then(response)
-
+            .then(response);
         })
     }else{
       console.log("Invalid date format!")
