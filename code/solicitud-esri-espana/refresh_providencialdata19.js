@@ -22,6 +22,7 @@ session.getToken('https://www.arcgis.com/sharing/rest/generateToken')
       where: "1=1"
     })
     .then(done => {
+      // This script requires this koop provider to be running: https://github.com/esri-es/koop-provider-csv-covid-esri
       let url = "http://localhost:8080/koop-provider-csv-cofid-esri/:host/FeatureServer/0/query?f=json";
 
       fetch(url, { 
