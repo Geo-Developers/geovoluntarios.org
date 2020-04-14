@@ -11,7 +11,7 @@ const session = new UserSession({
   password: settings.password
 })
 
-const serviceUrl = "https://services7.arcgis.com/lTrEzFGSU2ayogtj/arcgis/rest/services/output_feature/FeatureServer/0";
+const serviceUrl = "https://services7.arcgis.com/lTrEzFGSU2ayogtj/arcgis/rest/services/providentialdata19/FeatureServer/0";
 
 session.getToken('https://www.arcgis.com/sharing/rest/generateToken')
   .then(response => {
