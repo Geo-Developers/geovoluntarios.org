@@ -20,12 +20,16 @@ if(!process.argv[2]){
 
       session.getToken('https://www.arcgis.com/sharing/rest/generateToken')
         .then(response => {
+          console.log("Authentication response: ", response);
           addFeatures({
             url: "https://services7.arcgis.com/lTrEzFGSU2ayogtj/arcgis/rest/services/Afectados_por_coronavirus_por_provincia_en_Espania/FeatureServer/0",
             authentication: session,
             features: provincias(process.argv[2])
           })
-            .then(response);
+            .then(response => {
+              console.log("Add Features response: ", response);
+              console.log("Servicio: https://comunidadcovid.maps.arcgis.com/home/item.html?id=e8db862490a547abab86a65c05a60a5e#data");
+            });
         })
     }else{
       console.log("Invalid date format!")
